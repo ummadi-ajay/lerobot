@@ -1,3 +1,4 @@
+/* Copyright 2026 Ajay Ummadi (MakerWorks Lab). Licensed under the Apache License, Version 2.0; see the LICENSE file at the root of this repository. */
 'use strict';
 const $ = (s, r = document) => r.querySelector(s);
 const view = $('#view');

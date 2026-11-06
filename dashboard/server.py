@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright 2026 Ajay Ummadi (MakerWorks Lab).
+# Licensed under the Apache License, Version 2.0; see the LICENSE file at the root of this repository.
 """Local web app for SO101 leader/follower teleoperation.
 
 Run:  python dashboard/server.py [--host 127.0.0.1] [--port 8765]

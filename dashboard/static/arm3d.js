@@ -1,3 +1,4 @@
+/* Copyright 2026 Ajay Ummadi (MakerWorks Lab). Licensed under the Apache License, Version 2.0; see the LICENSE file at the root of this repository. */
 'use strict';
 /* 3D digital twin built from the official SO-101 CAD (URDF + STL meshes in /so101, from
  * TheRobotStudio/SO-ARM100). Follower = white arm with the two-jaw gripper; leader = teal arm

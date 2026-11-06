@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright 2026 Ajay Ummadi (MakerWorks Lab).
+# Licensed under the Apache License, Version 2.0; see the LICENSE file at the root of this repository.
 """Live training monitor for lerobot-train with terminal graphs and progress."""
 
 import re
