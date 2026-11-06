@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>LeRobot Teleoperation Studio</title>
+<meta name="description" content="Next-gen teleoperation and telemetry dashboard for SO-100 and SO-101 robotic arms">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%232563eb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Cpath d='M9 23V15l7-6 7 6v8' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='15' r='2.5' fill='white'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div id="banner" class="banner" hidden>
+  <span class="banner-icon">⚠</span> Connection to the dashboard server lost — attempting reconnect…
+</div>
+<div class="shell">
+  <aside class="side">
+    <div class="brand">
+      <div class="logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+          <circle cx="9" cy="9" r="1.5" fill="currentColor"></circle>
+          <circle cx="15" cy="9" r="1.5" fill="currentColor"></circle>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <b>LEROBOT // STUDIO</b>
+        <small class="tech-sub">TACTICAL TELEOP · MK-II</small>
+      </div>
+    </div>
+
+    <div class="side-hud-section">
+      <div class="side-hud-title">FLIGHT DECK MODULES</div>
+      <nav>
+        <a href="#/dashboard" data-route="dashboard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="9"></rect>
+            <rect x="14" y="3" width="7" height="5"></rect>
+            <rect x="14" y="12" width="7" height="9"></rect>
+            <rect x="3" y="16" width="7" height="5"></rect>
+          </svg>
+          <span>Cockpit Deck</span>
+        </a>
+        <a href="#/calibration" data-route="calibration">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <line x1="12" y1="3" x2="12" y2="21"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+          </svg>
+          <span>Motor Calibration</span>
+        </a>
+        <a href="#/recordings" data-route="recordings">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+          </svg>
+          <span>Episode Telemetry</span>
+        </a>
+        <a href="#/settings" data-route="settings">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Hardware Bus</span>
+        </a>
+        <a href="#/guide" data-route="guide">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          <span>Manual &amp; Safety</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="side-foot">
+      <div class="status-card">
+        <div class="status-head">
+          <span class="status-title">// HARDWARE LINK</span>
+          <span id="badge" class="badge idle"><span class="dot"></span><span id="status">IDLE</span></span>
+        </div>
+        <div id="side-stats" class="side-stats">
+          <span id="side-loop">-- ms</span> · <span id="side-hz">-- Hz</span>
+        </div>
+      </div>
+      <button id="theme" class="theme-btn" title="Toggle theme">
+        <span class="theme-icon">◐</span>
+        <span id="theme-label">Theme: Cockpit Dark</span>
+      </button>
+    </div>
+  </aside>
+
+  <div class="content-area">
+    <header class="hud-bar">
+      <div class="hud-left">
+        <span class="hud-bracket">[</span>
+        <div class="hud-sys-chip" id="hud-status-chip">
+          <span class="hud-beacon"></span>
+          <span id="hud-status-label">SYS STANDBY</span>
+        </div>
+        <span class="hud-sep">/</span>
+        <span class="hud-item"><span class="hud-label">ARM:</span> <b id="hud-arch">SO-101 MK-II</b></span>
+        <span class="hud-sep">/</span>
+        <span class="hud-item"><span class="hud-label">LINK:</span> <b id="hud-ports">ACM0 · ACM1</b></span>
+        <span class="hud-bracket">]</span>
+      </div>
+      <div class="hud-right">
+        <div class="hud-telemetry-pill">
+          <span class="hud-label">CYCLE:</span>
+          <span class="hud-num" id="hud-loop-ms">-- ms</span>
+          <span class="hud-hz-signal" id="hud-hz-signal" title="Signal lock">●●●●○</span>
+        </div>
+        <div class="hud-clock-pill">
+          <span class="hud-label">MISSION UTC:</span>
+          <span class="hud-clock" id="hud-clock">00:00:00 UTC</span>
+        </div>
+      </div>
+    </header>
+    <main id="view"></main>
+  </div>
+</div>
+
+<!-- Modal for Recording Preview & Analytics -->
+<div id="modal" class="modal" hidden>
+  <div class="modal-backdrop" id="modal-close-backdrop"></div>
+  <div class="modal-card">
+    <div class="modal-header">
+      <div>
+        <h2 id="modal-title">Recording Preview</h2>
+        <p id="modal-sub" class="modal-sub">Trajectory telemetry plot</p>
+      </div>
+      <button class="modal-close" id="modal-close-btn">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+<noscript><p style="padding:24px">This dashboard needs JavaScript.</p></noscript>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+<script src="/arm3d.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
